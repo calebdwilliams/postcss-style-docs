@@ -58,7 +58,12 @@ const defaultOptions: StyleDocsOptions = {
 };
 
 export function getDocsMessage(messages: Message[]): StyleDocsMessage {
-  return messages.find(message => message.plugin === pluginName) as StyleDocsMessage;
+  const message = messages.find(message => message.plugin === pluginName) as StyleDocsMessage;
+  return message || {
+    commentMap,
+    type: 'documentation',
+    plugin: 'postcss-style-docs'
+  };
 }
 
 /**

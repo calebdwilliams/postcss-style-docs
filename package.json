@@ -1,6 +1,6 @@
 {
   "name": "postcss-style-docs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "PostCSS plugin for dynamically adding documentation to styles",
   "keywords": [
     "postcss",

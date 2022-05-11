@@ -1,5 +1,8 @@
 node_modules/
 npm-debug.log
 yarn-error.log
-
+lib/
 coverage/
+*.js
+*.d.ts
+.DS_Store

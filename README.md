@@ -4,7 +4,14 @@
 
 [PostCSS]: https://github.com/postcss/postcss
 
+The `postcss-style-docs` pluin will walk through your input CSS and create a map of styles to documentation blocks as a message output.
+
 ```css
+/**
+ * @docs
+ * This is a documentation block for the .foo class
+ * it can be multiple lines
+ */
 .foo {
   /* Input example */
 }
@@ -24,22 +31,37 @@
 npm install --save-dev postcss postcss-style-docs
 ```
 
-**Step 2:** Check you project for existed PostCSS config: `postcss.config.js`
-in the project root, `"postcss"` section in `package.json`
-or `postcss` in bundle config.
+**Step 2:** The `postcss-style-docs` plugin works best when manually calling `postcss.process` which enables users to get data out of the plugin:
 
-If you do not use PostCSS, add it according to [official docs]
-and set this plugin in settings.
+```javascript
+import postcss from 'postcss';
+import { getDocsMessage, styleDocsPlugin } from './lib/cjs/index';
 
-**Step 3:** Add the plugin to plugins list:
-
-```diff
-module.exports = {
-  plugins: [
-+   require('postcss-style-docs'),
-    require('autoprefixer')
-  ]
+const inputCSS = `
+/**
+ * @docs
+ * We're doing something really fancy and our users are going
+ * to love it.
+ */
+.something-fancy {
+  color: tomato;
 }
+
+/** @docs Make it pop */
+.something-fancy--pop {
+  background: papayawhip;
+}
+`;
+
+const { css, messages } = await postcss([
+  styleDocsPlugin()
+]).process(inputCSS, { from: undefined });
+
+const { commentMap } = getDocsMessage(messages);
+
+console.log(conmentMap.size); // 2
+console.log(commentMap.get('.something-fancy')); // 'We're doing something really fancy and our users are going to love it'
+console.log(commentMap.get('.something-fancy--pop')); // 'Make it pop'
 ```
 
 [official docs]: https://github.com/postcss/postcss#usage

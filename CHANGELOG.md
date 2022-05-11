@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/calebdwilliams/postcss-style-docs/compare/v0.0.4...v0.0.5) (2022-05-11)
+
+
+### Bug Fixes
+
+* always return a result from getDocsMessage ([44f0999](https://github.com/calebdwilliams/postcss-style-docs/commit/44f09990cef0aec9099f84d40a139319346b6679))
+
 ### [0.0.4](https://github.com/calebdwilliams/postcss-style-docs/compare/v0.0.3...v0.0.4) (2022-05-11)
 
 ### [0.0.3](https://github.com/calebdwilliams/postcss-style-docs/compare/v0.0.2...v0.0.3) (2022-05-11)

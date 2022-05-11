@@ -11,6 +11,7 @@
   "scripts": {
     "build": "concurrently npm:tsc:*",
     "lint": "eslint ./src/index.ts",
+    "postrelease": "git push --follow-tags origin master; npm publish",
     "prerelease": "npm run build",
     "release": "standard-version",
     "test": "npm run build && jest --coverage && npm run lint",

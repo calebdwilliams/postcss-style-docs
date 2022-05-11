@@ -57,6 +57,10 @@ const defaultOptions: StyleDocsOptions = {
   preserve: false
 };
 
+export function getDocsMessage(messages: Message[]): StyleDocsMessage {
+  return messages.find(message => message.plugin === pluginName) as StyleDocsMessage;
+}
+
 /**
  * A PostCSS plugin for generating style documentation from source code
  */
@@ -126,7 +130,3 @@ export const styleDocsPlugin = (opts: StyleDocsOptions = {}): Plugin => {
     }
   };
 };
-
-export function getDocsMessage(messages: Message[]): StyleDocsMessage {
-  return messages.find(message => message.plugin === pluginName) as StyleDocsMessage;
-}

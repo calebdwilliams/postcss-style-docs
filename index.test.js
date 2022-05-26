@@ -1,6 +1,6 @@
 const postcss = require('postcss');
 const postcssNesting = require('postcss-nesting');
-const { getDocsMessage, styleDocsPlugin, pluginName } = require('./lib/cjs/index');
+const { getDocs, getDocsMessage, styleDocsPlugin, pluginName } = require('./lib/cjs/index');
 
 async function process(input, options = {}) {
   const result = await postcss([
@@ -136,4 +136,14 @@ it('will work with postcss-nesting', async () => {
   expect(commentMap.size).toEqual(2);
   expect(commentMap.has('.nested-text')).toBe(true);
   expect(commentMap.has('.nested-text.nested-text--bold')).toBe(true);
-})
+});
+
+it('will get the docs using the getDocs function', async () => {
+  const { messages } = await process(defaultInput, {
+    cleanWhitespace: true
+  });
+  const docs = getDocs(messages);
+
+  expect(docs.size).toEqual(1);
+  expect(docs.get('.text')).toEqual('Simple class for styling text might be multiple lines');
+});

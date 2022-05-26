@@ -66,6 +66,11 @@ export function getDocsMessage(messages: Message[]): StyleDocsMessage {
   };
 }
 
+export function getDocs(messages: Message[]): Map<string, string> {
+  const message = getDocsMessage(messages);
+  return message.commentMap;
+}
+
 /**
  * A PostCSS plugin for generating style documentation from source code
  */

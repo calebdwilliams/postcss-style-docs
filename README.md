@@ -35,7 +35,7 @@ npm install --save-dev postcss postcss-style-docs
 
 ```javascript
 import postcss from 'postcss';
-import { getDocsMessage, styleDocsPlugin } from './lib/cjs/index';
+import { getDocs, styleDocsPlugin } from './lib/cjs/index';
 
 const inputCSS = `
 /**
@@ -57,11 +57,11 @@ const { css, messages } = await postcss([
   styleDocsPlugin()
 ]).process(inputCSS, { from: undefined });
 
-const { commentMap } = getDocsMessage(messages);
+const docs = getDocs(messages);
 
-console.log(conmentMap.size); // 2
-console.log(commentMap.get('.something-fancy')); // 'We're doing something really fancy and our users are going to love it'
-console.log(commentMap.get('.something-fancy--pop')); // 'Make it pop'
+console.log(docs.size); // 2
+console.log(docs.get('.something-fancy')); // 'We're doing something really fancy and our users are going to love it'
+console.log(docs.get('.something-fancy--pop')); // 'Make it pop'
 ```
 
 [official docs]: https://github.com/postcss/postcss#usage
